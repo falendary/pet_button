@@ -19,8 +19,8 @@
 
         <div class="text-center">
 
-            <button id="recordAudioStart" class="start-record-button control-button">Записать</button>
-            <button id="recordAudioStop" class="stop-record-button control-button">Закончить</button>
+            <button id="recordAudioStart" ontouchstart="startRecord()" onclick="startRecord()" class="start-record-button control-button">Записать</button>
+            <button id="recordAudioStop" ontouchstart="stopRecord()" onclick="stopRecord()" class="stop-record-button control-button">Закончить</button>
 
         </div>
 

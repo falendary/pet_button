@@ -4,10 +4,32 @@ var recordAudioStop = document.getElementById('recordAudioStop')
 var recordedAudio = document.getElementById('recordedAudio')
 var petPlayButton = document.getElementById('petPlayButton')
 
+var rec;
+
 function play(){
 
-  console.log('play')
+  console.log('play');
   recordedAudio.play()
+
+}
+
+function startRecord(){
+
+  recordAudioStart.disabled = true;
+  recordAudioStop.disabled = false;
+  audioChunks = [];
+  rec.start();
+
+  console.log("Start recording");
+
+}
+function stopRecord(){
+
+  recordAudioStart.disabled = false;
+  recordAudioStop.disabled = true;
+  rec.stop();
+
+  console.log("Stop recording");
 
 }
 
@@ -31,27 +53,7 @@ function init(){
               }
             }
 
-          recordAudioStart.addEventListener('click', function(){
-
-              recordAudioStart.disabled = true;
-              recordAudioStop.disabled = false;
-              audioChunks = [];
-              rec.start();
-
-              console.log("Start recording");
-
-
-          })
-
-          recordAudioStop.addEventListener('click', function(){
-
-              recordAudioStart.disabled = false;
-              recordAudioStop.disabled = true;
-              rec.stop();
-
-              console.log("Stop recording");
-            
-          })
+          
 
 
 

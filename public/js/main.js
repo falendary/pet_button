@@ -74,6 +74,7 @@ function init(){
 
                       var audioElement = document.createElement('audio');
                       audioElement.id = 'recordedAudio'
+                      audioElement.controls = true
 
                       document.body.appendChild(audioElement)
 
@@ -84,7 +85,7 @@ function init(){
                       recordedAudioElement.appendChild(sourceElement);
 
                       sourceElement.src = data.url;
-                      sourceElement.type = 'audio/mp3';
+                      sourceElement.type = 'audio/ogg';
 
                       console.log("Data recorded", data);
 

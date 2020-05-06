@@ -41,24 +41,28 @@ function init(){
           rec = new MediaRecorder(stream);
 
           rec.ondataavailable = e => {
+
               audioChunks.push(e.data);
+
               if (rec.state == "inactive"){
-                let blob = new Blob(audioChunks,{type:'audio/mpeg-3'});
-                recordedAudio.src = URL.createObjectURL(blob);
+
+                var blob = new Blob(audioChunks,{type:'audio/mpeg'});
+                var audioObjectURL = URL.createObjectURL(blob);
                 recordedAudio.controls=true;
                 recordedAudio.autoplay=false;
 
-                console.log("Data recorded");
+
+                var sourceElement = document.createElement('source');
+
+                recordedAudio.appendChild(sourceElement);
+
+                sourceElement.src = audioObjectURL;
+                sourceElement.type = 'audio/mp3';
+
+                console.log("Data recorded", recordedAudio);
 
               }
             }
-
-          
-
-
-
-
-
       })
 
 }

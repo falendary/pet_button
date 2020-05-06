@@ -10,7 +10,7 @@ function play(){
 
   var recordedAudio = document.getElementById('recordedAudio')
 
-  console.log('play');
+  console.log('play' );
   recordedAudio.play()
 
 }
@@ -49,35 +49,70 @@ function init(){
               if (rec.state == "inactive"){
 
                 var blob = new Blob(audioChunks,{type:'audio/mpeg'});
-                var audioObjectURL = webkitURL.createObjectURL(blob);
-                recordedAudio.controls=true;
-                recordedAudio.autoplay=false;
 
-                var recordedAudioElement = document.getElementById('recordedAudio')
-                if(recordedAudioElement) {
-                  recordedAudioElement.remove()
-                }
+                blobToBase64(blob).then(function(data){
 
-                var audioElement = document.createElement('audio');
-                audioElement.id = 'recordedAudio'
+                  fetch('/api/save_recording', {
+                      method: "POST",
+                      headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                      },
+                      body: JSON.stringify({
+                        blob: data
+                      })
+                    }).then(function(data){
+                      return data.json();
+                    }).then(function(data){
 
-                document.body.appendChild(audioElement)
+                      console.log('data', data)
 
-                var recordedAudioElement = document.getElementById('recordedAudio')
+                      var recordedAudioElement = document.getElementById('recordedAudio')
+                      if(recordedAudioElement) {
+                        recordedAudioElement.remove()
+                      }
 
-                var sourceElement = document.createElement('source');
+                      var audioElement = document.createElement('audio');
+                      audioElement.id = 'recordedAudio'
 
-                recordedAudioElement.appendChild(sourceElement);
+                      document.body.appendChild(audioElement)
 
-                sourceElement.src = audioObjectURL;
-                sourceElement.type = 'audio/mp3';
+                      var recordedAudioElement = document.getElementById('recordedAudio')
 
-                console.log("Data recorded", audioObjectURL);
+                      var sourceElement = document.createElement('source');
 
+                      recordedAudioElement.appendChild(sourceElement);
+
+                      sourceElement.src = data.url;
+                      sourceElement.type = 'audio/mp3';
+
+                      console.log("Data recorded", data);
+
+                    })
+
+                  })
+                
               }
             }
       })
 
 }
+
+function blobToBase64(blob, cb) {
+
+  return new Promise(function(resolve, reject) {
+
+    var reader = new FileReader();
+
+    reader.onload = function() {
+      var dataUrl = reader.result;
+      var base64 = dataUrl.split(',')[1];
+      resolve(base64)
+    };
+
+    reader.readAsDataURL(blob);
+
+  })
+};
 
 init()

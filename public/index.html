@@ -4,7 +4,7 @@
 
     <meta charset="utf-8">
     <meta name="description" content="Pet Button">
-    <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Pet Button</title>
 
@@ -25,7 +25,7 @@
         </div>
 
         <div>
-            <button id="petPlayButton" class="pet-play-button"></button>
+            <button id="petPlayButton" ontouchstart="play()" onclick="play()" class="pet-play-button"></button>
         </div>
 
         <audio id="recordedAudio" style="display: none"></audio>
@@ -34,7 +34,7 @@
     
 </div>
 
-<script src="js/main.js" async></script>
+<script src="js/main.js"></script>
 
 </body>
 </html>

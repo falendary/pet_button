@@ -4,19 +4,14 @@ var recordAudioStop = document.getElementById('recordAudioStop')
 var recordedAudio = document.getElementById('recordedAudio')
 var petPlayButton = document.getElementById('petPlayButton')
 
+function play(){
+
+  console.log('play')
+  recordedAudio.play()
+
+}
+
 function init(){
-
-  petPlayButton.addEventListener('ontouchstart', function(event){
-
-    recordedAudio.play()
-
-  })
-
-  petPlayButton.addEventListener('click', function(event){
-
-    recordedAudio.play()
-
-  })
 
   navigator.mediaDevices.getUserMedia({audio:true})
       .then(function(stream) {

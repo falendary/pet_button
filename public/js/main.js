@@ -6,12 +6,19 @@ var petPlayButton = document.getElementById('petPlayButton')
 var rec;
 var audioChunks;
 
+
+var player = new OGVPlayer();
+
 function play(){
 
-  var recordedAudio = document.getElementById('recordedAudio')
+  // var recordedAudio = document.getElementById('recordedAudio')
 
-  console.log('play' );
-  recordedAudio.play()
+  // console.log('play' );
+  // recordedAudio.play()
+
+  console.log('player', player);
+
+  player.play();
 
 }
 
@@ -65,29 +72,37 @@ function init(){
                       return data.json();
                     }).then(function(data){
 
-                      console.log('data', data)
+                      player = new OGVPlayer();
 
-                      var recordedAudioElement = document.getElementById('recordedAudio')
-                      if(recordedAudioElement) {
-                        recordedAudioElement.remove()
-                      }
+                        // Or with options
+                      // Now treat it just like a video or audio element
+                      document.body.appendChild(player);
+                      player.src = data.url;
+                      // player.play();
 
-                      var audioElement = document.createElement('audio');
-                      audioElement.id = 'recordedAudio'
-                      audioElement.controls = true
+                      // console.log('data', data)
 
-                      document.body.appendChild(audioElement)
+                      // var recordedAudioElement = document.getElementById('recordedAudio')
+                      // if(recordedAudioElement) {
+                      //   recordedAudioElement.remove()
+                      // }
 
-                      var recordedAudioElement = document.getElementById('recordedAudio')
+                      // var audioElement = document.createElement('audio');
+                      // audioElement.id = 'recordedAudio'
+                      // audioElement.controls = true
 
-                      var sourceElement = document.createElement('source');
+                      // document.body.appendChild(audioElement)
 
-                      recordedAudioElement.appendChild(sourceElement);
+                      // var recordedAudioElement = document.getElementById('recordedAudio')
 
-                      sourceElement.src = data.url;
-                      sourceElement.type = 'audio/ogg';
+                      // var sourceElement = document.createElement('source');
 
-                      console.log("Data recorded", data);
+                      // recordedAudioElement.appendChild(sourceElement);
+
+                      // sourceElement.src = data.url;
+                      // sourceElement.type = 'audio/ogg';
+
+                      // console.log("Data recorded", data);
 
                     })
 

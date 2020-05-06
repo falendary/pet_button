@@ -1,12 +1,14 @@
 
 var recordAudioStart = document.getElementById('recordAudioStart')
 var recordAudioStop = document.getElementById('recordAudioStop')
-var recordedAudio = document.getElementById('recordedAudio')
 var petPlayButton = document.getElementById('petPlayButton')
 
 var rec;
+var audioChunks;
 
 function play(){
+
+  var recordedAudio = document.getElementById('recordedAudio')
 
   console.log('play');
   recordedAudio.play()
@@ -47,19 +49,30 @@ function init(){
               if (rec.state == "inactive"){
 
                 var blob = new Blob(audioChunks,{type:'audio/mpeg'});
-                var audioObjectURL = URL.createObjectURL(blob);
+                var audioObjectURL = webkitURL.createObjectURL(blob);
                 recordedAudio.controls=true;
                 recordedAudio.autoplay=false;
 
+                var recordedAudioElement = document.getElementById('recordedAudio')
+                if(recordedAudioElement) {
+                  recordedAudioElement.remove()
+                }
+
+                var audioElement = document.createElement('audio');
+                audioElement.id = 'recordedAudio'
+
+                document.body.appendChild(audioElement)
+
+                var recordedAudioElement = document.getElementById('recordedAudio')
 
                 var sourceElement = document.createElement('source');
 
-                recordedAudio.appendChild(sourceElement);
+                recordedAudioElement.appendChild(sourceElement);
 
                 sourceElement.src = audioObjectURL;
                 sourceElement.type = 'audio/mp3';
 
-                console.log("Data recorded", recordedAudio);
+                console.log("Data recorded", audioObjectURL);
 
               }
             }

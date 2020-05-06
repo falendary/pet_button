@@ -48,7 +48,7 @@ function init(){
 
               if (rec.state == "inactive"){
 
-                var blob = new Blob(audioChunks,{type:'audio/mpeg'});
+                var blob = new Blob(audioChunks,{type:'audio/ogg'});
 
                 blobToBase64(blob).then(function(data){
 

@@ -1,6 +1,7 @@
 var express = require('express');
 var dotenv = require('dotenv');
 var bodyParser = require('body-parser')
+var ffmpeg = require('ffmpeg');
 dotenv.config();
 
 
@@ -35,7 +36,7 @@ app.post('/api/save_recording', function (req, res) {
 
 	console.log('req', req.body);
 
-	var name = getFileName() + '.mp3'; 
+	var name = getFileName() + '.ogg'; 
 
 	var buf = new Buffer(req.body.blob, 'base64'); // decode
 	fs.writeFile("public/audio/" + name, buf, function(err) {
@@ -46,8 +47,6 @@ app.post('/api/save_recording', function (req, res) {
 	    }
 	  }); 
 })
-
-
 // Set public folder as root
 app.use(express.static('public'));
 

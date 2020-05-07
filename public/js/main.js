@@ -37,7 +37,7 @@ function init(argument) {
 
 
   sound = new Howl({
-    src: ['audio/eat.ogg']
+    src: ['audio/eat.mp3']
   });
 
   

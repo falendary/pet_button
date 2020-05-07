@@ -36,7 +36,7 @@ app.post('/api/save_recording', function (req, res) {
 
 	console.log('req', req.body);
 
-	var name = getFileName() + '.ogg'; 
+	var name = getFileName() + '.mp3'; 
 
 	var buf = new Buffer(req.body.blob, 'base64'); // decode
 	fs.writeFile("public/audio/" + name, buf, function(err) {
@@ -49,11 +49,6 @@ app.post('/api/save_recording', function (req, res) {
 })
 // Set public folder as root
 app.use(express.static('public'));
-
-
-// // Redirect all traffic to index.html
-// app.use((req, res) => res.sendFile(`${__dirname}/public/index.html`));
-
 
 
 app.listen(port, () => {

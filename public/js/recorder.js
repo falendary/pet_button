@@ -49,7 +49,7 @@ function init(){
 
               if (rec.state == "inactive"){
 
-                var blob = new Blob(audioChunks,{type:'audio/ogg'});
+                var blob = new Blob(audioChunks,{type:'audio/mpeg'});
 
                 blobToBase64(blob).then(function(data){
 
@@ -84,7 +84,7 @@ function init(){
                       recordedAudioElement.appendChild(sourceElement);
 
                       sourceElement.src = data.url;
-                      sourceElement.type = 'audio/ogg';
+                      sourceElement.type = 'audio/mpeg';
 
                       console.log("Data recorded", data);
 

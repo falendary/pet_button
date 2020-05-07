@@ -1,36 +1,46 @@
 var petPlayButton = document.getElementById('petPlayButton')
 
+var sound;
 
 function play(){
 
-  var recordedAudio = document.getElementById('recordedAudio')
+  // var recordedAudio = document.getElementById('recordedAudio')
 
-  console.log('play' );
-  recordedAudio.play()
+  // console.log('play' );
+  // recordedAudio.play()
+
+  sound.play();
 
 }
 
 function init(argument) {
 
-  var recordedAudioElement = document.getElementById('recordedAudio')
-  if(recordedAudioElement) {
-    recordedAudioElement.remove()
-  }
+  // var recordedAudioElement = document.getElementById('recordedAudio')
+  // if(recordedAudioElement) {
+  //   recordedAudioElement.remove()
+  // }
 
-  var audioElement = document.createElement('audio');
-  audioElement.id = 'recordedAudio'
-  audioElement.controls = true
+  // var audioElement = document.createElement('audio');
+  // audioElement.id = 'recordedAudio'
+  // audioElement.controls = true
 
-  document.body.appendChild(audioElement)
+  // document.body.appendChild(audioElement)
 
-  var recordedAudioElement = document.getElementById('recordedAudio')
+  // var recordedAudioElement = document.getElementById('recordedAudio')
 
-  var sourceElement = document.createElement('source');
+  // var sourceElement = document.createElement('source');
 
-  recordedAudioElement.appendChild(sourceElement);
+  // recordedAudioElement.appendChild(sourceElement);
 
-  sourceElement.src = 'audio/eat.ogg';
-  sourceElement.type = 'audio/ogg';
+  // sourceElement.src = 'audio/eat.ogg';
+  // sourceElement.type = 'audio/ogg';
+
+
+  sound = new Howl({
+    src: ['audio/eat.ogg']
+  });
+
+  
   
 }
 

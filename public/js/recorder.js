@@ -49,18 +49,23 @@ function init(){
 
               if (rec.state == "inactive"){
 
-                var blob = new Blob(audioChunks,{type:'audio/mpeg'});
+                var blob = new Blob(audioChunks,{type:'audio/mpeg-3'});
 
-                blobToBase64(blob).then(function(data){
+                blobToFile(blob).then(function(base64file){
+
+                  console.log('file',)
+
+                  // formData = new FormData();
+                  // formData.append('blob', blob);
+                  // formData.append('test', 123);
 
                   fetch('/api/save_recording', {
                       method: "POST",
                       headers: {
-                        "Content-Type": "application/json",
-                        "Accept": "application/json"
+                        'Content-type': 'application/json'
                       },
                       body: JSON.stringify({
-                        blob: data
+                        blob: base64file
                       })
                     }).then(function(data){
                       return data.json();
@@ -98,7 +103,7 @@ function init(){
 
 }
 
-function blobToBase64(blob, cb) {
+function blobToFile(blob, cb) {
 
   return new Promise(function(resolve, reject) {
 

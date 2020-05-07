@@ -33,6 +33,9 @@ a.new-record-button  {
 .new-record-button:visited {
     color:  #000;
 }
+.pet-play-button:disabled {
+    opacity: .5
+}
 
 .text-center {
     text-align: center;

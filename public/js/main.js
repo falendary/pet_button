@@ -5,6 +5,8 @@ var petPlayButton = document.getElementById('petPlayButton')
 var newRecordButton = document.getElementById('newRecord')
 
 recordAudioStart.disabled = true;
+petPlayButton.disabled = true;
+recordAudioStop.disabled = true;
 
 var rec;
 var audioChunks;
@@ -101,6 +103,8 @@ function init(){
 
                       sourceElement.src = data.url;
                       sourceElement.type = 'audio/mpeg';
+
+                      petPlayButton.disabled = false;
 
                       console.log("Data recorded", data);
 

@@ -2,6 +2,7 @@
 var recordAudioStart = document.getElementById('recordAudioStart')
 var recordAudioStop = document.getElementById('recordAudioStop')
 var petPlayButton = document.getElementById('petPlayButton')
+var newRecordButton = document.getElementById('newRecord')
 
 var rec;
 var audioChunks;
@@ -31,6 +32,12 @@ function stopRecord(){
   recordAudioStart.disabled = false;
   recordAudioStop.disabled = true;
   rec.stop();
+
+  setTimeout(function(){
+    recordAudioStart.style.display = 'none';
+    recordAudioStop.style.display = 'none';
+    newRecordButton.style.display = 'inline-block';
+  }, 100)
 
   console.log("Stop recording");
 

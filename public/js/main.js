@@ -4,6 +4,8 @@ var recordAudioStop = document.getElementById('recordAudioStop')
 var petPlayButton = document.getElementById('petPlayButton')
 var newRecordButton = document.getElementById('newRecord')
 
+recordAudioStart.disabled = true;
+
 var rec;
 var audioChunks;
 
@@ -50,6 +52,8 @@ function init(){
 
           rec = new MediaRecorder(stream);
 
+          recordAudioStart.disabled = false;
+
           rec.ondataavailable = e => {
 
               audioChunks.push(e.data);
@@ -85,7 +89,7 @@ function init(){
 
                       var audioElement = document.createElement('audio');
                       audioElement.id = 'recordedAudio'
-                      audioElement.controls = true
+                      // audioElement.controls = true
 
                       document.body.appendChild(audioElement)
 
